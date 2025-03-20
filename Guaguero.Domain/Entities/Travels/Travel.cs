@@ -24,6 +24,10 @@ namespace Guaguero.Domain.Entities.Travels
         public int SeetsDisponibles 
             => Bus.Capacidad - Quotas.Where(q => q.Status != QuotaState.Canceled).Count() - (InformalQuotas - InformalExits);
         public virtual ICollection<TravelStop> Stops { get; set; }
+        public Guid NextStopID { get; set; }
+        public virtual TravelStop NextStop { get; set; }
+        public int ActualStep {  get; set; }
+
         public Travel()
         {
             Stops = new List<TravelStop>();
