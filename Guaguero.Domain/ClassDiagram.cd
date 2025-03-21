@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Guaguero.Domain.Base.AuditEntity">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAACAAAACAAAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+      <FileName>Base\AuditEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Users.Credential">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACIAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Users\Credential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Users.UserBase">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAQAoAAAAAAAAAAAAAAAIAAAg=</HashCode>
+      <FileName>Entities\Users\UserBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Users.Customer">
+    <Position X="1.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAACAAAAAAAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\Users\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Users.Employee">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAQAAAAAAAAAAACAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Users\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Sindicatos.Sindicato">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Entities\Sindicatos\Sindicato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Sindicatos.Bus">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAABAAAAAAAQAAEAAAAAAAAGAAAAAAAAgAgAAAAAg=</HashCode>
+      <FileName>Entities\Sindicatos\Bus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Sindicatos.CreditPerUser">
+    <Position X="2.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAQABAAAAAAAAECAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Sindicatos\CreditPerUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Logistic.DiscountSolicitud">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAgAABAAAAAA=</HashCode>
+      <FileName>Entities\Logistic\DiscountSolicitud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Logistic.Discount">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAACAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Logistic\Discount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.Travel">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEMFpAAEAAAAIACAAEgAAACACAAAAAAAAAAgAAgAABA=</HashCode>
+      <FileName>Entities\Travels\Travel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.Quota">
+    <Position X="4.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAFAAAAABAAAIAAAAAAUCAAABCAAAAAAAAAABA=</HashCode>
+      <FileName>Entities\Travels\Quota.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.TravelStop">
+    <Position X="8.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAQAAgAAAAAAAAAAAAAAAgAAAAQAAAAAAABA=</HashCode>
+      <FileName>Entities\Travels\TravelStop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.Payments.PaymentBase">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAACAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Travels\Payments\PaymentBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.Payments.EfectivePayment">
+    <Position X="8.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIAAAAAAA=</HashCode>
+      <FileName>Entities\Travels\Payments\EfectivePayment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Guaguero.Domain.Entities.Travels.Payments.CreditPayment">
+    <Position X="10.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Travels\Payments\CreditPayment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
