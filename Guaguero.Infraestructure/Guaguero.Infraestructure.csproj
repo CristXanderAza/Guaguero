@@ -11,4 +11,8 @@
     <Folder Include="External\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Guaguero.Application\Guaguero.Application.csproj" />
+  </ItemGroup>
+
 </Project>

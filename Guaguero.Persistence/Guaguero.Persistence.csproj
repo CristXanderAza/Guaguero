@@ -12,4 +12,8 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Guaguero.Application\Guaguero.Application.csproj" />
+  </ItemGroup>
+
 </Project>

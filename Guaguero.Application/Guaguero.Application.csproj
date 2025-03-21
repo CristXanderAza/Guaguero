@@ -14,4 +14,8 @@
     <Folder Include="Queries\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Guaguero.Domain\Guaguero.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

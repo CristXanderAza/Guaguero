@@ -8,8 +8,8 @@ namespace Guaguero.Domain.Entities.Travels
 {
     public enum TravelState
     {
-        Pending,
-        InProgress,
-        Finished
+        Pending = 1,
+        InProgress = 2,
+        Finished = 3
     }
 }

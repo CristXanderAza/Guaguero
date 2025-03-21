@@ -4,7 +4,7 @@ namespace Guaguero.Domain.Entities.Travels
 {
     public enum StopType
     {
-        Ariival,
-        Departure
+        Ariival = 1,
+        Departure = 2
     }
 }
