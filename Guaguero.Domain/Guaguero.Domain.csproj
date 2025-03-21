@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Interfaces\Infraestructure\Internal\" />
+    <Folder Include="Interfaces\Infraestructure\External\" />
+    <Folder Include="Interfaces\PersistenceInterfaces\" />
   </ItemGroup>
 
 </Project>

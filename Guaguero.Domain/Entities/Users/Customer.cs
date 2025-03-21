@@ -6,7 +6,8 @@ namespace Guaguero.Domain.Entities.Users
     public class Customer : UserBase
     {
         public decimal Credit { get; set; }
-        public virtual ICollection<Discount> Discounts { get; set; }
+        public int? DiscountID { get; set; }
+        public virtual Discount? Discount { get; set; }
         private Customer(string firstName, string lastName, string phoneNumber,  Credential credential) : 
             base(firstName, lastName, phoneNumber, credential)
         {

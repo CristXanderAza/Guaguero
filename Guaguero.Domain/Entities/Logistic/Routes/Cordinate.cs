@@ -1,6 +1,6 @@
 ﻿namespace Guaguero.Domain.Entities.Logistic.Routes
 {
-    public class Coordinate
+    public struct Coordinate
     {
         public double Lat;
         public double Lng;

@@ -1,28 +1,28 @@
 ﻿using Guaguero.Domain.Base;
 
-
 namespace Guaguero.Domain.Entities.Logistic.Routes
 {
     public class Route : AuditEntity
     {
-        public Guid RouteID { get; set; }
+        public int RouteID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Origin { get; set; }
         public Coordinate OriginPoint { get; set; }
         public string Destination { get; set; }
         public Coordinate DestinationPoint { get; set; }
+        public string URL { get; set; }
         //public string Polyline { get; set; }
         public double Distance { get; set; }
         public double Duration { get; set; }
-        public virtual ICollection<RouteSegement> Segments { get; set; }
+       //public virtual ICollection<RouteSegement> Segments { get; set; }
 
 
         public Route()
         {
-            Segments = new List<RouteSegement>();
+            //Segments = new List<RouteSegement>();
         }
-
+        /*
         public Result<Coordinate> FindStopPoint(Coordinate userPoint)
         {
             RouteSegement? nearestSegment = FindNearestSegment(userPoint, 1000);
@@ -53,5 +53,6 @@ namespace Guaguero.Domain.Entities.Logistic.Routes
 
             return R * c; // Distancia en metros
         }
+        */
     }
 }

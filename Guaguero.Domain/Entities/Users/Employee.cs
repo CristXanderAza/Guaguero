@@ -6,7 +6,7 @@ namespace Guaguero.Domain.Entities.Users
 {
     public class Employee : UserBase
     {
-        public Guid SindicatoID { get; set; }
+        public int SindicatoID { get; set; }
         public decimal Salary { get; set; }
         public virtual Sindicato Sindicato { get; set; }
 

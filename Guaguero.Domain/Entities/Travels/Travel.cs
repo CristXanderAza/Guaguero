@@ -8,7 +8,7 @@ namespace Guaguero.Domain.Entities.Travels
     public class Travel : AuditEntity
     {
         public Guid TravelID { get; set; }
-        public Guid RouteID { get; set; }
+        public int RouteID { get; set; }
         public Route Route { get; set; }
         public Guid BusID { get; set; }
         public Bus Bus { get; set; }
@@ -22,7 +22,8 @@ namespace Guaguero.Domain.Entities.Travels
         public TravelState Status { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
         public int SeetsDisponibles 
-            => Bus.Capacidad - Quotas.Where(q => q.Status != QuotaState.Canceled).Count() - (InformalQuotas - InformalExits);
+            => Bus.Capacidad - Quotas.Where(q => q.Status != QuotaState.Canceled).Count() - 
+               (InformalQuotas - InformalExits);
         public virtual ICollection<TravelStop> Stops { get; set; }
         public Guid NextStopID { get; set; }
         public virtual TravelStop NextStop { get; set; }

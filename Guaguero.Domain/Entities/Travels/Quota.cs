@@ -1,5 +1,5 @@
 ﻿using Guaguero.Domain.Base;
-using Guaguero.Domain.Entities.Logistic.Routes;
+using Guaguero.Domain.Entities.Travels.Payments;
 using Guaguero.Domain.Entities.Users;
 
 namespace Guaguero.Domain.Entities.Travels
@@ -15,6 +15,8 @@ namespace Guaguero.Domain.Entities.Travels
         public TravelStop ArrivalStop { get; set; }
         public Guid DepertureStopID { get; set; }
         public TravelStop DepertureStop { get; set; }
+        public Guid PaymentID { get; set; }
+        public PaymentBase Payment { get; set; }
         public QuotaState Status { get; set; }
     }
 }

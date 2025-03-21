@@ -16,7 +16,7 @@ namespace Guaguero.Domain.Entities.Logistic.Routes
         public double Distance { get; set; }
         public string Polyline { get; set; }
 
-        
+        /*
         public bool IsInSegment(Coordinate userPoint)
         {
             var coordinates = DecodePolilyne();
@@ -90,5 +90,6 @@ namespace Guaguero.Domain.Entities.Logistic.Routes
             return degree * Math.PI / 180.0;
 
         }
+        */
     }
 }

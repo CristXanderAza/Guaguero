@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Guaguero.Domain.Entities.Sindicatos
 {
@@ -17,7 +13,7 @@ namespace Guaguero.Domain.Entities.Sindicatos
         public string Anio { get; set; }
         public string Tipo { get; set; }
         public string Estado { get; set; }
-        public Guid SindicatoID { get; set; }
+        public int SindicatoID { get; set; }
         public Sindicato Sindicato { get; set; }
     }
 }
