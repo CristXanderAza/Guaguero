@@ -1,11 +1,12 @@
 ﻿using Guaguero.Domain.Base;
 using Guaguero.Domain.Entities.Logistic;
+using Guaguero.Domain.Entities.Sindicatos;
 
 namespace Guaguero.Domain.Entities.Users
 {
     public class Customer : UserBase
     {
-        public decimal Credit { get; set; }
+        public virtual ICollection<CreditPerUser> Credits { get; set; }
         public int? DiscountID { get; set; }
         public virtual Discount? Discount { get; set; }
         private Customer(string firstName, string lastName, string phoneNumber,  Credential credential) : 
