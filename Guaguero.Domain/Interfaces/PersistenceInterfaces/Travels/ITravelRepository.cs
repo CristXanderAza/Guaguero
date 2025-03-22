@@ -1,5 +1,5 @@
-﻿using Guaguero.Domain.Entities.Travels;
-
+﻿using Guaguero.Domain.Entities.Logistic.Routes;
+using Guaguero.Domain.Entities.Travels;
 
 namespace Guaguero.Domain.Interfaces.PersistenceInterfaces.Travels
 {
@@ -7,6 +7,7 @@ namespace Guaguero.Domain.Interfaces.PersistenceInterfaces.Travels
     {
         Task<IEnumerable<Travel>> GetTravelsInRoute(int  routeId, int stepIndex);
         Task<IEnumerable<Travel>> GetTravelsInRouteAndWaypoint(int routeId, int sindicateID, int stepIndex);
-
+        Task<IEnumerable<WayPoint>> GetWayPointsOfTravel(Guid travelID);
+        Task<WayPoint> GetNearestWayPoint(Guid travelID, Coordinate coordinate);
     }
 }
