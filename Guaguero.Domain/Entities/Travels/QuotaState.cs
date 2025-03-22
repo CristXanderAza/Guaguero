@@ -6,7 +6,7 @@ namespace Guaguero.Domain.Entities.Travels
     {
         Pending = 1,
         Arrived = 2,
-        Depertured = 3,
+        Confirmed = 3,
         Canceled = 4
     }
 }

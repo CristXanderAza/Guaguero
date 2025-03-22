@@ -16,7 +16,7 @@ namespace Guaguero.Domain.Entities.Logistic.Routes
         public double Distance { get; set; }
         public double Duration { get; set; }
        //public virtual ICollection<RouteSegement> Segments { get; set; }
-
+        public virtual ICollection<WayPoint> WayPoints { get; set; }
 
         public Route()
         {

@@ -10,6 +10,7 @@ namespace Guaguero.Domain.Entities.Sindicatos
         public string Modelo { get; set; }
         public string Color { get; set; }
         public bool IsActive { get; set; }
+        public int Capacidad { get; set; }
         public string Estado { get; set; }
         public int SindicatoID { get; set; }
         public Sindicato Sindicato { get; set; }

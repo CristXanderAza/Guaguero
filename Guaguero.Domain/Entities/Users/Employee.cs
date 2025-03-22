@@ -1,7 +1,6 @@
 ﻿using Guaguero.Domain.Base;
 using Guaguero.Domain.Entities.Sindicatos;
 
-
 namespace Guaguero.Domain.Entities.Users
 {
     public class Employee : UserBase
@@ -14,7 +13,7 @@ namespace Guaguero.Domain.Entities.Users
         {
         }
 
-        public static Result<Employee> Create(string firstName, string lastName, string phoneNumber, string email, string password, decimal salary, Guid sindicatoID)
+        public static Result<Employee> Create(string firstName, string lastName, string phoneNumber, string email, string password, decimal salary, int sindicatoID)
         {
             var credential = Credential.Create(email, password);
             if (!credential.IsSuccessful)
