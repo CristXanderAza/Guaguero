@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Infraestructure\Internal\" />
     <Folder Include="Interfaces\Infraestructure\External\" />
-    <Folder Include="Interfaces\PersistenceInterfaces\" />
+    <Folder Include="Interfaces\PersistenceInterfaces\Logistic\" />
+    <Folder Include="Interfaces\PersistenceInterfaces\Users\" />
+    <Folder Include="Interfaces\PersistenceInterfaces\Sindicatos\" />
   </ItemGroup>
 
 </Project>
