@@ -12,14 +12,15 @@ namespace Guaguero.Domain.Entities.Travels
         public virtual Travel Travel { get; set; }
         public Guid CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
-        
+        public int Quantity { get; set; }
         /*
         public Guid ArrivalStopID { get; set; }
         public virtual TravelStop ArrivalStop { get; set; }
         public Guid DepertureStopID { get; set; }
         public virtual TravelStop DepertureStop { get; set; }
         */
-        public int EntryPointID { get; set; }
+        public int EntryStep { get; set; }
+        public decimal Total { get; set; }
         public virtual WayPoint EntryPoint { get; set; }
         public Guid PaymentID { get; set; }
         public virtual PaymentBase Payment { get; set; }

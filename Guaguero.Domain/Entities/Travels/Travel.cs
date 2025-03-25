@@ -10,16 +10,19 @@ namespace Guaguero.Domain.Entities.Travels
         public Guid TravelID { get; set; }
         public int RouteID { get; set; }
         public Route Route { get; set; }
-        public Guid BusID { get; set; }
+        public int BusID { get; set; }
         public Bus Bus { get; set; }
         public Guid EmpleoyeeID { get; set; }
         public Employee Employee { get; set; }
+        public int SindicatoID { get; set; }
         public DateTime Departure { get; set; }
         public int InformalQuotas { get; set; }
         public int Exits { get; set; }
         public DateTime Arrival { get; set; }
         public Coordinate ActualLocation { get; set; }
         public TravelState Status { get; set; }
+        public StepState StepState { get; set; }
+        public WayPoint NearestWayPoint { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
         public int SeetsDisponibles 
             => Bus.Capacidad - Quotas.Where(q => q.Status != QuotaState.Canceled).Count() - 
@@ -30,6 +33,7 @@ namespace Guaguero.Domain.Entities.Travels
         public virtual TravelStop NextStop { get; set; }
        */
         public int ActualStep {  get; set; }
+        public decimal PricePerSeat { get; set; }
 
         public Travel()
         {
