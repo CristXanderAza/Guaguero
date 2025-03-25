@@ -1,5 +1,6 @@
 ﻿using CXAD.NetStrategist;
 using Guaguero.Application.Commands.Travels.PaymentStrategies;
+using Guaguero.Application.NotifInterfaces;
 using Guaguero.Domain.Base;
 using Guaguero.Domain.Entities.Travels;
 using Guaguero.Domain.Entities.Travels.Payments;
@@ -27,16 +28,17 @@ namespace Guaguero.Application.Commands.Travels
         private readonly IInMemoryCache<Travel, Guid> _travelCache;
         private readonly ICustomerRepository _customerRepository;
         private readonly ITravelNotificator _travelNotificator;
-        public  readonly IStrategistFor<IPayStrategy, string> _paymentStrategiest;
+        private readonly IStrategistFor<IPayStrategy, string> _paymentStrategiest;
 
         public ReservQuotaCommandHandler(ITravelRepository travelRepository, IInMemoryCache<Travel, Guid> travelCache, ITravelNotificator travelNotificator
-            , IStrategistFor<IPayStrategy, string> paymentStrategiest, ICustomerRepository customerRepository)
+            , IStrategistFor<IPayStrategy, string> paymentStrategiest, ICustomerRepository customerRepository, IQuotaRepository quotaRepository)
         {
             _travelRepository = travelRepository;
             _travelCache = travelCache;
             _travelNotificator = travelNotificator;
             _paymentStrategiest = paymentStrategiest;
-            _customerRepository = customerRepository;       
+            _customerRepository = customerRepository;
+            _quotaRepository = quotaRepository;
         }
 
         public async Task<Result<Unit>> Handle(ReservQuotaCommand request, CancellationToken cancellationToken)
@@ -48,8 +50,10 @@ namespace Guaguero.Application.Commands.Travels
                 return Result<Unit>.Fail("El viaje seleccionado ya ha concluido");
             if (travel.ActualStep > request.EntryStep)
                 return Result<Unit>.Fail("El viaje ya ha pasado la parada seleccionada");
-            if(travel.SeetsDisponibles < 1)
-                return Result<Unit>.Fail("El viaje no posee asientos disponibles");
+            if(travel.SeetsDisponibles < request.SeatsQuantity)
+                return Result<Unit>.Fail("El viaje no posee asientos disponibles suficientes");
+            if(travel.TotalSteps < request.EntryStep)
+                return Result<Unit>.Fail("La parada seleccionada no existe");
 
             Customer customer = await _customerRepository.FindById(request.CustomerID);
             if(customer == null)
@@ -71,7 +75,7 @@ namespace Guaguero.Application.Commands.Travels
             };
 
             await _quotaRepository.Save(quota);
-            await _travelNotificator.SuscribeToTravel(travel.TravelID);
+            await _travelNotificator.SuscribeToTravel(travel.TravelID, customer.UserID);
             return Result<Unit>.Success(Unit.Value);
         }
 

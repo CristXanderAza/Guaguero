@@ -10,6 +10,7 @@ namespace Guaguero.Application.Commands.Travels.PaymentStrategies
         public async Task<Result<PaymentBase>> MakePay(Travel travel, Customer customer, int seats)
         {
             decimal total = travel.PricePerSeat * seats;
+            total -= total * (customer.Discount.Percentage / 100);
             decimal credit = customer.Credits.FirstOrDefault(c => c.SindicatoID == travel.SindicatoID).Credit;
             if (credit < total)
                 return Result<PaymentBase>.Fail("Creditos del cliente insuficientes para realizar el pago");

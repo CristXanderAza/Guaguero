@@ -9,5 +9,7 @@ namespace Guaguero.Domain.Interfaces.PersistenceInterfaces.Travels
         Task<IEnumerable<Travel>> GetTravelsInRouteAndWaypoint(int routeId, int sindicateID, int stepIndex);
         Task<IEnumerable<WayPoint>> GetWayPointsOfTravel(Guid travelID);
         Task<WayPoint> GetNearestWayPoint(Guid travelID, Coordinate coordinate);
+        Task<WayPoint> GetWaypointByStep(Guid travelID, int stepIndex);
+        Task<Travel> GetTravelByEmpleoyeeID(Guid empleoyeeID);
     }
 }

@@ -33,6 +33,7 @@ namespace Guaguero.Domain.Entities.Travels
         public virtual TravelStop NextStop { get; set; }
        */
         public int ActualStep {  get; set; }
+        public int TotalSteps { get; set; }
         public decimal PricePerSeat { get; set; }
 
         public Travel()

@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Commands\Route\" />
     <Folder Include="Commands\Sindicato\" />
-    <Folder Include="Events\" />
     <Folder Include="Behaviors\" />
     <Folder Include="DTOs\" />
     <Folder Include="Queries\" />
