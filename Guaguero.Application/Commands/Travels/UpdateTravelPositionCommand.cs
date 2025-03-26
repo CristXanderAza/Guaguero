@@ -51,15 +51,15 @@ namespace Guaguero.Application.Commands.Travels
             {
                 travel.StepState = StepState.Red;    
             }
-            else if (travel.StepState == StepState.Red)
+            else if (travel.StepState == StepState.Red && distance >= 0.8)
             {
-                if (distance >= 0.8 && travel.ActualStep < travel.TotalSteps)
+                if (travel.ActualStep < travel.TotalSteps)
                 {
                     travel.StepState = StepState.Green;
                     travel.ActualStep++;
                     travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.TravelID, travel.ActualStep);
                 }
-                else if (distance >= 0.8 && travel.ActualStep == travel.TotalSteps)
+                else 
                 {
                     travel.Status = TravelState.Finished;
                 }
