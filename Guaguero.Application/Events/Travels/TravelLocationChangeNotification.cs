@@ -2,7 +2,6 @@
 using Guaguero.Domain.Entities.Logistic.Routes;
 using MediatR;
 
-
 namespace Guaguero.Application.Events.Travels
 {
     public class TravelLocationChangeNotification : INotification
