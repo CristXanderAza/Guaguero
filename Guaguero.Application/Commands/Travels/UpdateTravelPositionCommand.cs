@@ -43,20 +43,13 @@ namespace Guaguero.Application.Commands.Travels
                 travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.TravelID, travel.ActualStep);
             double distance = GeoUtils.Haversine(travel.ActualLocation, travel.NearestWayPoint.Coordinate);
 
-            if (travel.StepState == StepState.Green)
+            if (travel.StepState == StepState.Green && distance <= 1.5)
             {
-                if(distance <= 1.5)
-                    travel.StepState = StepState.Yellow;
+                 travel.StepState = StepState.Yellow;
             }
-            else if(travel.StepState == StepState.Yellow)
+            else if(travel.StepState == StepState.Yellow && distance <= 0.5)
             {
-
-                if (distance <= 0.5)
-                {
-                    travel.StepState = StepState.Red;
-
-                }
-                    
+                travel.StepState = StepState.Red;    
             }
             else if (travel.StepState == StepState.Red)
             {
