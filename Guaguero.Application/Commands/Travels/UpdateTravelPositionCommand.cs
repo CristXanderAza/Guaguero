@@ -49,7 +49,8 @@ namespace Guaguero.Application.Commands.Travels
             }
             else if(travel.StepState == StepState.Yellow && distance <= 0.5)
             {
-                travel.StepState = StepState.Red;    
+                travel.StepState = StepState.Red;
+                await NotifyArrivals(travel.TravelID, travel.ActualStep);
             }
             else if (travel.StepState == StepState.Red && distance >= 0.8)
             {
@@ -63,6 +64,7 @@ namespace Guaguero.Application.Commands.Travels
                 {
                     travel.Status = TravelState.Finished;
                 }
+
             }
             await NotifyChange(travel);
             await _travelRepository.Update(travel);
@@ -97,6 +99,12 @@ namespace Guaguero.Application.Commands.Travels
         {
             IEnumerable<Quota> quotas = await _quotaRepository.GetQuotaOfTravelInStep(travelID, stepIndex);
             var qFilteredList = quotas.Where(q => q.Status == QuotaState.Confirmed);
+            TravelArrivalEvent arrivalEvent = new TravelArrivalEvent()
+            {
+                Quotas = qFilteredList,
+                TravelID = travelID
+            };
+            await _mediator.Publish(arrivalEvent);
         }
     }
 }

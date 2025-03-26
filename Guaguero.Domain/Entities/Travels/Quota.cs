@@ -7,7 +7,7 @@ namespace Guaguero.Domain.Entities.Travels
 {
     public class Quota : AuditEntity
     {
-       // public Guid QuotaID { get; set; }
+        public Guid QuotaID { get; set; }
         public Guid TravelID { get; set; }
         public virtual Travel Travel { get; set; }
         public Guid CustomerID { get; set; }
