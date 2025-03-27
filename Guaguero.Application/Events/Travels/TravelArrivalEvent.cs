@@ -9,6 +9,7 @@ namespace Guaguero.Application.Events.Travels
     {
         public IEnumerable<Quota> Quotas { get; set; }
         public Guid TravelID { get; set; }
+        public string ConnectionID { get; set; }
     }
 
     public class TravelArrivalEventHandler : INotificationHandler<TravelArrivalEvent>
@@ -30,7 +31,7 @@ namespace Guaguero.Application.Events.Travels
                 Total = q.Total,
                 IsPaid = q.Payment.Accepted
             });
-            await _notificator.NotifyArrivals(arrivals, $"listeners::{notification.TravelID}");
+            await _notificator.NotifyArrivals(arrivals, notification.ConnectionID);
 
         }
     }

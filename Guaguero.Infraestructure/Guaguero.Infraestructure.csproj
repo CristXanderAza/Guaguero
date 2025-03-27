@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Internal\" />
     <Folder Include="External\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Guaguero.API\Guaguero.API.csproj" />
     <ProjectReference Include="..\Guaguero.Application\Guaguero.Application.csproj" />
   </ItemGroup>
 
