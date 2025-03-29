@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -18,6 +18,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaguero.Infraestructure", "Guaguero.Infraestructure\Guaguero.Infraestructure.csproj", "{42D29C46-69D6-4CCE-8C0B-DC900D15983C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaguero.API", "Guaguero.API\Guaguero.API.csproj", "{76D32281-57A5-472B-A978-78FCA9F770F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IOC", "IOC", "{BB9ABF54-C706-42E9-86A7-B9950B3098EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaguero.InOC", "Guaguero.InOC\Guaguero.InOC.csproj", "{36070ED5-4B36-4801-8EBF-C0E6F294B5AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{90D6FEAC-F29E-4B4E-82CC-E319E2C8C2C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaguero.ApplicationTest", "Guaguero.ApplicationTest\Guaguero.ApplicationTest.csproj", "{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,14 @@ Global
 		{76D32281-57A5-472B-A978-78FCA9F770F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76D32281-57A5-472B-A978-78FCA9F770F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76D32281-57A5-472B-A978-78FCA9F770F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +71,8 @@ Global
 		{FE300317-6546-4CD6-B2A2-BDCD49F4AD71} = {2C02DF2C-D82C-47BD-8F28-C9151EF675E8}
 		{42D29C46-69D6-4CCE-8C0B-DC900D15983C} = {2C02DF2C-D82C-47BD-8F28-C9151EF675E8}
 		{76D32281-57A5-472B-A978-78FCA9F770F6} = {D2703EDF-5C2C-43A9-9133-2563F081CA77}
+		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB} = {BB9ABF54-C706-42E9-86A7-B9950B3098EE}
+		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF} = {90D6FEAC-F29E-4B4E-82CC-E319E2C8C2C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {592D0BB8-60BA-40FF-B75E-CB5B9813BCF1}

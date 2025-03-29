@@ -7,7 +7,7 @@ namespace Guaguero.Domain.Entities.Users
 {
     public class Customer : UserBase
     {
-        public virtual ICollection<CreditPerUser> Credits { get; set; }
+        public virtual CreditPerUser Credit { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
         public int? DiscountID { get; set; }
         public virtual Discount? Discount { get; set; }

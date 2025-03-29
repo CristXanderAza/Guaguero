@@ -11,14 +11,14 @@ namespace Guaguero.Application.Commands.Travels.PaymentStrategies
         {
             decimal total = travel.PricePerSeat * seats;
             total -= total * (customer.Discount.Percentage / 100);
-            decimal credit = customer.Credits.FirstOrDefault(c => c.SindicatoID == travel.SindicatoID).Credit;
+            decimal credit = customer.Credit.Amount;
             if (credit < total)
                 return Result<PaymentBase>.Fail("Creditos del cliente insuficientes para realizar el pago");
             PaymentBase payment = new CreditPayment()
             {
                 Amount = total
             };
-            customer.Credits.FirstOrDefault(c => c.SindicatoID == travel.SindicatoID).Credit -= total;
+            customer.Credit.Amount -= total;
             return Result<PaymentBase>.Success(payment);
         }
     }
