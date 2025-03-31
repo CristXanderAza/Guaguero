@@ -13,6 +13,7 @@ namespace Guaguero.Application.Commands.Travels
     {
         public Guid EmpleoyeeID { get; set; }
         public Guid TravelID { get; set; }
+        public double TravelSpeed { get; set; }
         public Coordinate Coordinate { get; set; }
         public string ConnectionID { get; set; }
     }

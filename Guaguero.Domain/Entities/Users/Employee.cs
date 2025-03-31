@@ -11,6 +11,7 @@ namespace Guaguero.Domain.Entities.Users
 
         public Employee(string firstName, string lastName, string phoneNumber, Credential credential) : base(firstName, lastName, phoneNumber, credential)
         {
+            
         }
 
         public static Result<Employee> Create(string firstName, string lastName, string phoneNumber, string email, string password, decimal salary, int sindicatoID)

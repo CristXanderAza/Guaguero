@@ -11,7 +11,7 @@ namespace Guaguero.Domain.Entities.Logistic.Routes
         public Coordinate OriginPoint { get; set; }
         public string Destination { get; set; }
         public Coordinate DestinationPoint { get; set; }
-        public string URL { get; set; }
+        public string GeoJSON { get; set; }
         //public string Polyline { get; set; }
         public double Distance { get; set; }
         public double Duration { get; set; }
