@@ -7,13 +7,14 @@ namespace Guaguero.Domain.Entities.Users
 {
     public class Customer : UserBase
     {
-        public virtual ICollection<CreditPerUser> Credits { get; set; }
+        public virtual CreditPerUser Credit { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
         public int? DiscountID { get; set; }
         public virtual Discount? Discount { get; set; }
         private Customer(string firstName, string lastName, string phoneNumber,  Credential credential) : 
             base(firstName, lastName, phoneNumber, credential)
         {
+            
         }
 
         public static Result<Customer> Create(string firstName, string lastName, string phoneNumber, string email, string password)

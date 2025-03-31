@@ -5,8 +5,8 @@ namespace Guaguero.Application.NotifInterfaces
 {
     public interface ITravelNotificator
     {
-        Task SuscribeToTravel(Guid travelId, Guid userId);   
+        Task SuscribeToTravel(Guid travelId, string connectionId);   
         Task NotifyTravelChange(TravelLocationChangeNotification notification, string group);
-        Task NotifyArrivals(IEnumerable<ArrivalDTO> arrivals, string group);
+        Task NotifyArrivals(IEnumerable<ArrivalDTO> arrivals, string connectionID);
     }
 }

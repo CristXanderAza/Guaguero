@@ -13,7 +13,9 @@ namespace Guaguero.Application.Commands.Travels
     {
         public Guid EmpleoyeeID { get; set; }
         public Guid TravelID { get; set; }
+        public double TravelSpeed { get; set; }
         public Coordinate Coordinate { get; set; }
+        public string ConnectionID { get; set; }
     }
 
     public class UpdateTravelPositionCommandHandler : IRequestHandler<UpdateTravelPositionCommand, Result<Unit>>
@@ -50,7 +52,7 @@ namespace Guaguero.Application.Commands.Travels
             else if(travel.StepState == StepState.Yellow && distance <= 0.5)
             {
                 travel.StepState = StepState.Red;
-                await NotifyArrivals(travel.TravelID, travel.ActualStep);
+                await NotifyArrivals(travel.TravelID, travel.ActualStep, request.ConnectionID);
             }
             else if (travel.StepState == StepState.Red && distance >= 0.8)
             {
@@ -95,13 +97,14 @@ namespace Guaguero.Application.Commands.Travels
             //await _mediator.Publish(new TravelPositionChangedNotification(travel.TravelID, travel.ActualLocation));
         }
 
-        private async Task NotifyArrivals(Guid travelID, int stepIndex)
+        private async Task NotifyArrivals(Guid travelID, int stepIndex, string connectionId)
         {
             IEnumerable<Quota> quotas = await _quotaRepository.GetQuotaOfTravelInStep(travelID, stepIndex);
             var qFilteredList = quotas.Where(q => q.Status == QuotaState.Confirmed);
             TravelArrivalEvent arrivalEvent = new TravelArrivalEvent()
             {
                 Quotas = qFilteredList,
+                ConnectionID  = connectionId,
                 TravelID = travelID
             };
             await _mediator.Publish(arrivalEvent);

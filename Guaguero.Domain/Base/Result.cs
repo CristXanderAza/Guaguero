@@ -3,7 +3,7 @@ namespace Guaguero.Domain.Base
 {
     public class Result<T> 
     {
-        public T Data { get; set; }
+        public T? Data { get; set; }
         public bool IsSuccessful { get; set; }
         public string? Message { get; set; }
 
@@ -14,6 +14,12 @@ namespace Guaguero.Domain.Base
             IsSuccessful = isSuccess;
         }
 
+        private Result(string message)
+        {
+            Message = message;
+            IsSuccessful = false;
+        }
+
         public static Result<T> Success(T data)
         {
             return new Result<T>(data, null, true);
@@ -21,7 +27,7 @@ namespace Guaguero.Domain.Base
 
         public static Result<T> Fail(string message)
         {
-            return new Result<T>(null,message, false);
+            return new Result<T>(message);
         }
 
     }

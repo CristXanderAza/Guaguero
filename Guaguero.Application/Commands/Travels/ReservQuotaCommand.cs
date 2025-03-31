@@ -19,6 +19,7 @@ namespace Guaguero.Application.Commands.Travels
         public int EntryStep { get; set; }
         public int SeatsQuantity { get; set; }
         public string PaymentType { get; set; }
+        public string ConnectionID { get; set; }
     }
 
     public class ReservQuotaCommandHandler : IRequestHandler<ReservQuotaCommand, Result<Unit>>
@@ -75,7 +76,7 @@ namespace Guaguero.Application.Commands.Travels
             };
 
             await _quotaRepository.Save(quota);
-            await _travelNotificator.SuscribeToTravel(travel.TravelID, customer.UserID);
+            await _travelNotificator.SuscribeToTravel(travel.TravelID, request.ConnectionID);
             return Result<Unit>.Success(Unit.Value);
         }
 

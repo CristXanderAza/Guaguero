@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guaguero.API\Guaguero.API.csproj" />
+    <ProjectReference Include="..\Guaguero.Application\Guaguero.Application.csproj" />
+    <ProjectReference Include="..\Guaguero.Infraestructure\Guaguero.Infraestructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logistic\" />
+    <Folder Include="Sindicato\" />
+    <Folder Include="Users\" />
+  </ItemGroup>
+
+</Project>
