@@ -7,9 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Base\" />
     <Folder Include="Configuratiosn\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Logistic\" />
+    <Folder Include="Repositories\Sindicatos\" />
+    <Folder Include="Repositories\Users\" />
   </ItemGroup>
 
   <ItemGroup>

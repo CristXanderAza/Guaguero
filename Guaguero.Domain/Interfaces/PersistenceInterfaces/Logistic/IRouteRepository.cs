@@ -7,5 +7,6 @@ namespace Guaguero.Domain.Interfaces.PersistenceInterfaces.Logistic
         Task<IEnumerable<Route>> GetRoutesContaining(string routeName);
         Task<WayPoint> GetNearestWayPoint(int routeID, Coordinate coordinate);
         Task<IEnumerable<WayPoint>> GetWayPoints(int routeID);
+        Task<WayPoint> GetWaypointByStep(int routelID, int stepIndex);
     }
 }

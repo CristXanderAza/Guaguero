@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Guaguero.API\Guaguero.API.csproj" />
     <ProjectReference Include="..\Guaguero.Application\Guaguero.Application.csproj" />
     <ProjectReference Include="..\Guaguero.Infraestructure\Guaguero.Infraestructure.csproj" />
+    <ProjectReference Include="..\Guaguero.Persistence\Guaguero.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
