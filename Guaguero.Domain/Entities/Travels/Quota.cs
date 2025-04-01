@@ -21,7 +21,9 @@ namespace Guaguero.Domain.Entities.Travels
         */
         public int EntryStep { get; set; }
         public decimal Total { get; set; }
-        public virtual WayPoint EntryPoint { get; set; }
+
+        //public int WayPointID { get; set; }
+        public virtual WayPoint? EntryPoint { get; set; }
         public Guid PaymentID { get; set; }
         public virtual PaymentBase Payment { get; set; }
         public QuotaState Status { get; set; }

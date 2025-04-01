@@ -1,4 +1,5 @@
 ﻿using Guaguero.Domain.Base;
+using Guaguero.Domain.Entities.Travels;
 
 namespace Guaguero.Domain.Entities.Sindicatos
 {
@@ -14,5 +15,6 @@ namespace Guaguero.Domain.Entities.Sindicatos
         public string Estado { get; set; }
         public int SindicatoID { get; set; }
         public Sindicato Sindicato { get; set; }
+        public virtual ICollection<Travel> Travels { get; set; }
     }
 }

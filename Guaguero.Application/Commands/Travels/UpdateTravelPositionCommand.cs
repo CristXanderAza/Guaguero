@@ -22,6 +22,7 @@ namespace Guaguero.Application.Commands.Travels
     {
         private readonly ITravelRepository _travelRepository;
         private readonly IInMemoryCache<Travel, Guid> _travelCache;
+
         private readonly IMediator _mediator;
         private readonly IQuotaRepository _quotaRepository;
 
