@@ -14,7 +14,8 @@ namespace Guaguero.Persistence.Base.Configurations.SindicatoConfigurations
 
             builder.HasMany(s => s.Buses)
                 .WithOne(b => b.Sindicato)
-                .HasForeignKey(b => b.SindicatoID);
+                .HasForeignKey(b => b.SindicatoID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             builder.HasMany(s => s.Routes)
                  .WithMany(r => r.Sindicatos)

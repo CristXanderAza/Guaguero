@@ -20,7 +20,8 @@ namespace Guaguero.Persistence.Base.Configurations.Users
 
             builder.HasOne(builder => builder.CreditPerUser)
                 .WithMany()
-                .HasForeignKey(builder => builder.CreditID);
+                .HasForeignKey(builder => builder.CreditID)
+                .OnDelete(DeleteBehavior.NoAction); ;
         }
     }
 }

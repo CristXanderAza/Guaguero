@@ -17,6 +17,8 @@ namespace Guaguero.Domain.Entities.Users
             
         }
 
+        public Customer()  { }
+
         public static Result<Customer> Create(string firstName, string lastName, string phoneNumber, string email, string password)
         {
             var credential = Credential.Create(email, password);

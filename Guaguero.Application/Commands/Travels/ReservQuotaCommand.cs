@@ -72,10 +72,13 @@ namespace Guaguero.Application.Commands.Travels
                 EntryStep = request.EntryStep,
                 Payment = paymentRes.Data,
                 Total = paymentRes.Data.Amount,
-                Status = QuotaState.Pending
+                Status = QuotaState.Pending,
+                Quantity = request.SeatsQuantity
             };
-
+            travel.SeetsOcupied += quota.Quantity;
             await _quotaRepository.Save(quota);
+            await _travelRepository.Update(travel);
+            _travelCache.Update(travel);
             await _travelNotificator.SuscribeToTravel(travel.TravelID, request.ConnectionID);
             return Result<Unit>.Success(Unit.Value);
         }
@@ -85,7 +88,10 @@ namespace Guaguero.Application.Commands.Travels
 
             Travel travel = await _travelCache.FindById(travelID);
             if(travel == null)
+            {
                 travel = await _travelRepository.FindById(travelID);
+                await _travelCache.Add(travel);
+            }
             return travel;
         }
     }

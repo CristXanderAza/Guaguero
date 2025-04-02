@@ -27,6 +27,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{90D6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guaguero.ApplicationTest", "Guaguero.ApplicationTest\Guaguero.ApplicationTest.csproj", "{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientsTesters", "ClientsTesters", "{208F38D8-E342-47FB-A701-3709348EEF81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerTester", "CustomerTester\CustomerTester.csproj", "{D9C6DF06-136C-434B-990B-D3095E6F4DC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,10 @@ Global
 		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C6DF06-136C-434B-990B-D3095E6F4DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C6DF06-136C-434B-990B-D3095E6F4DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C6DF06-136C-434B-990B-D3095E6F4DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C6DF06-136C-434B-990B-D3095E6F4DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +81,7 @@ Global
 		{76D32281-57A5-472B-A978-78FCA9F770F6} = {D2703EDF-5C2C-43A9-9133-2563F081CA77}
 		{36070ED5-4B36-4801-8EBF-C0E6F294B5AB} = {BB9ABF54-C706-42E9-86A7-B9950B3098EE}
 		{7104E4FF-C57C-4FB0-9ECB-0257959E83BF} = {90D6FEAC-F29E-4B4E-82CC-E319E2C8C2C9}
+		{D9C6DF06-136C-434B-990B-D3095E6F4DC5} = {208F38D8-E342-47FB-A701-3709348EEF81}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {592D0BB8-60BA-40FF-B75E-CB5B9813BCF1}

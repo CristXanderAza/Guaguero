@@ -16,11 +16,13 @@ namespace Guaguero.Persistence.Base.Configurations.Users
         {
             builder.HasOne(c => c.Discount)
                 .WithMany()
-                .HasForeignKey(c => c.DiscountID);
+                .HasForeignKey(c => c.DiscountID)
+                .OnDelete(DeleteBehavior.NoAction); 
 
             builder.HasOne(c => c.Credit)
                 .WithOne()
-                .HasForeignKey<CreditPerUser>(c => c.CustomerID);
+                .HasForeignKey<CreditPerUser>(c => c.CustomerID)
+                .OnDelete(DeleteBehavior.NoAction); ;
         }
     }
 }

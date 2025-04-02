@@ -43,7 +43,7 @@ namespace Guaguero.Persistence.Base.Configurations.Logistic
             builder.HasMany(r => r.WayPoints)
                    .WithOne()
                    .HasForeignKey(wp => wp.RouteID)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
 
             // Configuración para Coordinate como Owned Entity
             builder.OwnsOne(r => r.OriginPoint, op =>

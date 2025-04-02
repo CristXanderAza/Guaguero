@@ -1,11 +1,7 @@
 ﻿using Guaguero.Domain.Entities.Sindicatos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Guaguero.Persistence.Base.Configurations.Users
 {
@@ -21,12 +17,17 @@ namespace Guaguero.Persistence.Base.Configurations.Users
             builder.HasMany(c => c.Payments)
                 .WithOne(p => p.CreditPerUser)
                 .HasForeignKey(p => p.CreditPerUserID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(c => c.Reloads)
                 .WithOne()
                 .HasForeignKey(r => r.CreditID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(c => c.Customer)
+                .WithOne(c => c.Credit)
+                .HasForeignKey<CreditPerUser>(c => c.CustomerID)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
