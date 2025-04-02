@@ -19,6 +19,8 @@ namespace Guaguero.Domain.Entities.Users
             Credential = credential;
         }
 
+        public UserBase() { }
+
         public bool Authenticate(string password)
             => Credential.Authenticate(password);
     }

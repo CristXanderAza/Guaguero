@@ -13,7 +13,7 @@ namespace Guaguero.Persistence.Base.Configurations.TravelsConfiguration.PaymentC
     {
         public void Configure(EntityTypeBuilder<EfectivePayment> builder)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

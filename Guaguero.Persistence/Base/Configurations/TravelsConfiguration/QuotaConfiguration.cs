@@ -20,11 +20,13 @@ namespace Guaguero.Persistence.Base.Configurations.TravelsConfiguration
 
             builder.HasOne(q => q.Customer)
                 .WithMany(c => c.Quotas)
-                .HasForeignKey(q => q.CustomerID);
+                .HasForeignKey(q => q.CustomerID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             builder.HasOne(q => q.Payment)
                 .WithOne(p => p.Quota)
-                .HasForeignKey<PaymentBase>(p => p.PaymentID);
+                .HasForeignKey<PaymentBase>(p => p.PaymentID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
 
         }

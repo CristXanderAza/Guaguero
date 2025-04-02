@@ -17,11 +17,15 @@ namespace Guaguero.Persistence.Base.Configurations.Users
             
             builder.HasOne(d => d.Discount)
                 .WithMany()
-                .HasForeignKey(d => d.SolicitudID);
+                .HasForeignKey(d => d.SolicitudID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             builder.HasOne(d => d.Customer)
                 .WithOne()
-                .HasForeignKey<DiscountSolicitud>(d => d.CustomerID);
+                .HasForeignKey<DiscountSolicitud>(d => d.CustomerID)
+                .OnDelete(DeleteBehavior.NoAction); ;
+
+
         }
     }
 }

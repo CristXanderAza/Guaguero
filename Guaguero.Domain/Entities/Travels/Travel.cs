@@ -24,8 +24,10 @@ namespace Guaguero.Domain.Entities.Travels
         public StepState StepState { get; set; }
         public WayPoint NearestWayPoint { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
+        public int SeetsOcupied { get; set; }
+        public int BusCapacity { get; set; }
         public int SeetsDisponibles 
-            => Bus.Capacidad - Quotas.Where(q => q.Status != QuotaState.Canceled).Count() - 
+            => BusCapacity - SeetsOcupied - 
                (InformalQuotas - Exits);
        /*
         public virtual ICollection<TravelStop> Stops { get; set; }

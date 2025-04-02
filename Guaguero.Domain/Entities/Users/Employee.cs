@@ -14,6 +14,8 @@ namespace Guaguero.Domain.Entities.Users
             
         }
 
+        public Employee() { }
+
         public static Result<Employee> Create(string firstName, string lastName, string phoneNumber, string email, string password, decimal salary, int sindicatoID)
         {
             var credential = Credential.Create(email, password);

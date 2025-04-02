@@ -13,7 +13,8 @@ namespace Guaguero.Persistence.Base.Configurations.SindicatoConfigurations
             
             builder.HasMany(b => b.Travels)
                 .WithOne(t => t.Bus)
-                .HasForeignKey(t => t.BusID);
+                .HasForeignKey(t => t.BusID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             
         }

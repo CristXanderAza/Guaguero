@@ -17,15 +17,29 @@ namespace Guaguero.Persistence.Base.Configurations.TravelsConfiguration
 
             builder.HasMany(t => t.Quotas)
                 .WithOne(q => q.Travel)
-                .HasForeignKey(q => q.TravelID);
+                .HasForeignKey(q => q.TravelID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             builder.HasOne(t => t.Employee)
                 .WithMany()
-                .HasForeignKey(t => t.EmpleoyeeID);
+                .HasForeignKey(t => t.EmpleoyeeID)
+                .OnDelete(DeleteBehavior.NoAction); ;
 
             builder.HasOne(t => t.Route)
                 .WithMany(r => r.Travels)
-                .HasForeignKey(t => t.RouteID);
+                .HasForeignKey(t => t.RouteID)
+                .OnDelete(DeleteBehavior.NoAction); ;
+
+            builder.OwnsOne(wp => wp.ActualLocation, c =>
+            {
+                c.Property(p => p.Lat)
+                  .HasColumnName("Actual_Lat")
+                  .HasColumnType("decimal(9,6)");
+
+                c.Property(p => p.Lng)
+                  .HasColumnName("Actual_Lng")
+                  .HasColumnType("decimal(9,6)");
+            });
         }
     }
 }

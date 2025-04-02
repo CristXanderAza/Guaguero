@@ -1,5 +1,6 @@
 ﻿using Guaguero.Domain.Base;
 using Guaguero.Domain.Entities.Travels;
+using Guaguero.Domain.Interfaces.Infraestructure.Internal;
 using Guaguero.Domain.Interfaces.PersistenceInterfaces.Travels;
 using MediatR;
 
@@ -15,6 +16,8 @@ namespace Guaguero.Application.Commands.Travels
     public class ConfirmedArrangeCommandHandler : IRequestHandler<ConfirmArrivalCommand, Result<Unit>>
     {
         private readonly IQuotaRepository _quotaRepository;
+        private readonly ITravelRepository _travelRepository;
+        private readonly IInMemoryCache<Travel,Guid> _cache;
 
         public async Task<Result<Unit>> Handle(ConfirmArrivalCommand request, CancellationToken cancellationToken)
         {
@@ -29,11 +32,24 @@ namespace Guaguero.Application.Commands.Travels
                 else
                 {
                     quota.Status = QuotaState.Canceled;
+                    var tr = await getTravel(request.TravelId);
+                    tr.SeetsOcupied -= quota.Quantity;
                     await _quotaRepository.Update(quota);
+                    await _travelRepository.Update(tr);
                 }
             }
             return Result<Unit>.Success(Unit.Value);
             //throw new NotImplementedException();
+        }
+
+        private async Task<Travel> getTravel(Guid guid)
+        {
+            var tr =  await _cache.FindById(guid);
+            if(tr == null)
+            {
+                tr = await _travelRepository.FindById(guid);
+            }
+            return tr;
         }
     }
 }

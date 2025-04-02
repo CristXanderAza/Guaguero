@@ -18,6 +18,8 @@ namespace Guaguero.Domain.Entities.Users
             PasswordHash = Hash(password);
         }
 
+        public Credential() { }
+
         public static Result<Credential> Create(string email, string password)
         {
             if (string.IsNullOrWhiteSpace(email) || !Regex.IsMatch(email, EmailPattern))

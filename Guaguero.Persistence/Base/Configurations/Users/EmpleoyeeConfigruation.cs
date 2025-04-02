@@ -14,7 +14,8 @@ namespace Guaguero.Persistence.Base.Configurations.Users
 
             builder.HasOne(e => e.Sindicato)
                 .WithMany()
-                .HasForeignKey(e => e.SindicatoID);
+                .HasForeignKey(e => e.SindicatoID)
+                .OnDelete(DeleteBehavior.NoAction); ;
         }
     }
 }

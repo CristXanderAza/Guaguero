@@ -10,7 +10,6 @@
     <Folder Include="Commands\Route\" />
     <Folder Include="Commands\Sindicato\" />
     <Folder Include="Behaviors\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>

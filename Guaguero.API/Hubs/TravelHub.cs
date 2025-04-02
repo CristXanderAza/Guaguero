@@ -24,13 +24,54 @@ namespace Guaguero.API.Hubs
 
         //Commands
         public async Task CreateReser(ReservQuotaCommand command)
-            => await _mediator.Publish(command);
+        {
+            command.ConnectionID = Context.ConnectionId;
+            var res = await _mediator.Send(command);
+            if (!res.IsSuccessful)
+            {
+                await Clients.Caller.SendAsync("Error", res.Message);
+            }
+        }
+
         public async Task UpdateTravelPosition(UpdateTravelPositionCommand command)
-            => await _mediator.Publish(command);
+        {
+            command.ConnectionID = Context.ConnectionId;
+            var res = await _mediator.Send(command);
+            if (!res.IsSuccessful)
+            {
+                await Clients.Caller.SendAsync("Error", res.Message);
+            }
+        }
+
         public async Task ConfirmQuota(ConfirmQuotaCommand command)
-            => await _mediator.Publish(command);
+        {
+
+            var res = await _mediator.Send(command);
+            if (!res.IsSuccessful)
+            {
+                await Clients.Caller.SendAsync("Error", res.Message);
+            }
+        }
+
         public async Task ConfirmArrivals(ConfirmArrivalCommand command)
-            => await _mediator.Publish(command);
+        {
+
+            var res = await _mediator.Send(command);
+            if (!res.IsSuccessful)
+            {
+                await Clients.Caller.SendAsync("Error", res.Message);
+            }
+        }
+
+        public async Task StartTravel(StartTravelCommand command)
+        {
+
+            var res = await _mediator.Send(command);
+            if (!res.IsSuccessful)
+            {
+               await Clients.Caller.SendAsync("Error", res.Message);
+            }
+        }
 
         //Events
         public async Task NotifyTravelChange(TravelLocationChangeNotification notification, string group)
