@@ -30,7 +30,16 @@ namespace CXAD.NetStrategist
         public C GetStrategy(K key)
         {
             Type t = _strategies[key];
-            return (C)_serviceProvider.GetRequiredService(t);
+            try
+            {
+                return (C)_serviceProvider.GetRequiredService(t);
+            }
+            catch(Exception ex)
+            {
+
+                return (C)_serviceProvider.GetRequiredService(t);
+            }
+         
         }
 
         public IEnumerable<K> GetKeys()

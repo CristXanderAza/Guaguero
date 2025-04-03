@@ -18,11 +18,15 @@ namespace Guaguero.API.Controllers.Travels
             _mediator = mediator;
         }
 
-        [HttpGet("TravelsInRouteAndWaypoint")]
+        [HttpPost("TravelsInRouteAndWaypoint")]
         public async Task<ActionResult<IEnumerable<TravelResumeDTO>>> GetTravelsInRoute(GetTravelInRouteBeforeWaypointQuery query)
         {
-            return Ok(await _mediator.Send(query));
+            var r = await _mediator.Send(query);
+            return Ok(r);
         }
+
+
+
 
     }
 }

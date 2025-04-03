@@ -1,3 +1,4 @@
+using Guaguero.API.Hubs;
 using Guaguero.Application.NotifInterfaces;
 using Guaguero.InOC.Travels;
 using Guaguero.Persistence.Base;
@@ -11,12 +12,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddDbContext<GuagueroContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DBGuaguero")));
+    options// Habilita Lazy Loading
+           .UseSqlServer(builder.Configuration.GetConnectionString("DBGuaguero")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<ITravelNotificator, TravelNotificator>();
 builder.Services.RegisterTravelDependencies();
+//builder.Services.AddScoped<TravelHub>();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
+
+
 
 var app = builder.Build();
 
@@ -32,5 +38,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<TravelHub>("/travelHub");
 
 app.Run();

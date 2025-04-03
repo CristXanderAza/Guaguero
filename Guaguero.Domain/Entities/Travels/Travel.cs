@@ -19,10 +19,11 @@ namespace Guaguero.Domain.Entities.Travels
         public int InformalQuotas { get; set; }
         public int Exits { get; set; }
         public DateTime Arrival { get; set; }
-        public Coordinate ActualLocation { get; set; }
+        public Coordinate? ActualLocation { get; set; }
         public TravelState Status { get; set; }
         public StepState StepState { get; set; }
         public WayPoint NearestWayPoint { get; set; }
+        public int NearestWayPointID { get; set; }
         public virtual ICollection<Quota> Quotas { get; set; }
         public int SeetsOcupied { get; set; }
         public int BusCapacity { get; set; }

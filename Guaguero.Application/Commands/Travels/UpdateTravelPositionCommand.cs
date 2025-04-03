@@ -43,7 +43,7 @@ namespace Guaguero.Application.Commands.Travels
                 return Result<Unit>.Fail("El viaje seleccionado no existe");
             travel.ActualLocation = request.Coordinate;
             if (travel.NearestWayPoint == null)
-                travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.TravelID, travel.ActualStep);
+                travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.RouteID, travel.ActualStep);
             double distance = GeoUtils.Haversine(travel.ActualLocation, travel.NearestWayPoint.Coordinate);
 
             if (travel.StepState == StepState.Green && distance <= 1.5)
@@ -61,7 +61,7 @@ namespace Guaguero.Application.Commands.Travels
                 {
                     travel.StepState = StepState.Green;
                     travel.ActualStep++;
-                    travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.TravelID, travel.ActualStep);
+                    travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.RouteID, travel.ActualStep);
                 }
                 else 
                 {
