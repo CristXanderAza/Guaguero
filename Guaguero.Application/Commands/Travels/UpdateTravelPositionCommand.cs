@@ -45,7 +45,7 @@ namespace Guaguero.Application.Commands.Travels
             if (travel.NearestWayPoint == null)
                 travel.NearestWayPoint = await _travelRepository.GetWaypointByStep(travel.RouteID, travel.ActualStep);
             double distance = GeoUtils.Haversine(travel.ActualLocation, travel.NearestWayPoint.Coordinate);
-
+            string time = CalcularTiempo(distance, request.TravelSpeed);
             if (travel.StepState == StepState.Green && distance <= 1.5)
             {
                  travel.StepState = StepState.Yellow;
@@ -69,7 +69,7 @@ namespace Guaguero.Application.Commands.Travels
                 }
 
             }
-            await NotifyChange(travel);
+            await NotifyChange(travel, time);
             await _travelRepository.Update(travel);
             await _travelCache.Update(travel);
             return Result<Unit>.Success(Unit.Value);
@@ -84,7 +84,7 @@ namespace Guaguero.Application.Commands.Travels
             return travel;
         }
 
-        private async Task NotifyChange(Travel travel)
+        private async Task NotifyChange(Travel travel, string time)
         {
             var notif = new TravelLocationChangeNotification()
             {
@@ -92,7 +92,8 @@ namespace Guaguero.Application.Commands.Travels
                 ActualLocation = travel.ActualLocation,
                 NextStep = travel.ActualStep,
                 StepState = travel.StepState.ToString(),
-                WaypointLocation = travel.NearestWayPoint.Coordinate
+                WaypointLocation = travel.NearestWayPoint.Coordinate,
+                tiempoEstimado = time
             };
             await _mediator.Publish(notif);
             //await _mediator.Publish(new TravelPositionChangedNotification(travel.TravelID, travel.ActualLocation));
@@ -109,6 +110,20 @@ namespace Guaguero.Application.Commands.Travels
                 TravelID = travelID
             };
             await _mediator.Publish(arrivalEvent);
+        }
+
+
+        static string CalcularTiempo(double distancia, double velocidad)
+        {
+            if (velocidad <= 0)
+                return "La velocidad debe ser mayor que 0";
+
+            double tiempoTotal = distancia / velocidad; // Tiempo en horas
+
+            int horas = (int)tiempoTotal;
+            int minutos = (int)((tiempoTotal - horas) * 60);
+
+            return $"{horas} horas y {minutos} minutos";
         }
     }
 }

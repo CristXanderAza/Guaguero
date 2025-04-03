@@ -11,6 +11,7 @@ namespace Guaguero.Application.Events.Travels
         public int NextStep { get; set; }
         public string StepState { get; set; }
         public Coordinate WaypointLocation { get; set; }
+        public string tiempoEstimado { get; set; }
     }
 
     public class TravelLocationChangeNotificationHandler : INotificationHandler<TravelLocationChangeNotification>
