@@ -10,6 +10,7 @@ namespace Guaguero.Application.Events.Travels
         public IEnumerable<Quota> Quotas { get; set; }
         public Guid TravelID { get; set; }
         public string ConnectionID { get; set; }
+           
     }
 
     public class TravelArrivalEventHandler : INotificationHandler<TravelArrivalEvent>
