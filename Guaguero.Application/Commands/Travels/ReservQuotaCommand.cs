@@ -12,7 +12,7 @@ using MediatR;
 
 namespace Guaguero.Application.Commands.Travels
 {
-    public class ReservQuotaCommand : IRequest<Result<Unit>>
+    public class ReservQuotaCommand : IRequest<Result<Guid>>
     {
         public Guid TravelID { get; set; }
         public Guid CustomerID { get; set; }
@@ -22,7 +22,7 @@ namespace Guaguero.Application.Commands.Travels
         public string ConnectionID { get; set; }
     }
 
-    public class ReservQuotaCommandHandler : IRequestHandler<ReservQuotaCommand, Result<Unit>>
+    public class ReservQuotaCommandHandler : IRequestHandler<ReservQuotaCommand, Result<Guid>>
     {
         private readonly ITravelRepository _travelRepository;
         private readonly IQuotaRepository _quotaRepository;
@@ -42,28 +42,28 @@ namespace Guaguero.Application.Commands.Travels
             _quotaRepository = quotaRepository;
         }
 
-        public async Task<Result<Unit>> Handle(ReservQuotaCommand request, CancellationToken cancellationToken)
+        public async Task<Result<Guid>> Handle(ReservQuotaCommand request, CancellationToken cancellationToken)
         {
             Travel travel = await _getTravel(request.TravelID);
             if (travel == null)
-                return Result<Unit>.Fail("El viaje seleccionado no existe");
+                return Result<Guid>.Fail("El viaje seleccionado no existe");
             if (travel.Status == TravelState.Finished)
-                return Result<Unit>.Fail("El viaje seleccionado ya ha concluido");
+                return Result<Guid>.Fail("El viaje seleccionado ya ha concluido");
             if (travel.ActualStep > request.EntryStep)
-                return Result<Unit>.Fail("El viaje ya ha pasado la parada seleccionada");
+                return Result<Guid>.Fail("El viaje ya ha pasado la parada seleccionada");
             if(travel.SeetsDisponibles < request.SeatsQuantity)
-                return Result<Unit>.Fail("El viaje no posee asientos disponibles suficientes");
+                return Result<Guid>.Fail("El viaje no posee asientos disponibles suficientes");
             if(travel.TotalSteps < request.EntryStep)
-                return Result<Unit>.Fail("La parada seleccionada no existe");
+                return Result<Guid>.Fail("La parada seleccionada no existe");
 
             Customer customer = await _customerRepository.FindById(request.CustomerID);
             if(customer == null)
-                return Result<Unit>.Fail("El cliente no existe");
+                return Result<Guid>.Fail("El cliente no existe");
 
             IPayStrategy payStrategy = _paymentStrategiest.GetStrategy(request.PaymentType);
             Result<PaymentBase> paymentRes = await payStrategy.MakePay(travel, customer, request.SeatsQuantity);
             if(!paymentRes.IsSuccessful)
-                return Result<Unit>.Fail(paymentRes.Message);
+                return Result<Guid>.Fail(paymentRes.Message);
 
             Quota quota = new Quota
             {
@@ -73,14 +73,16 @@ namespace Guaguero.Application.Commands.Travels
                 Payment = paymentRes.Data,
                 Total = paymentRes.Data.Amount,
                 Status = QuotaState.Pending,
-                Quantity = request.SeatsQuantity
+                Quantity = request.SeatsQuantity,
+                
             };
             travel.SeetsOcupied += quota.Quantity;
             await _quotaRepository.Save(quota);
+            await _customerRepository.Update(customer);
             await _travelRepository.Update(travel);
-            _travelCache.Update(travel);
+            await _travelCache.Update(travel);
             await _travelNotificator.SuscribeToTravel(travel.TravelID, request.ConnectionID);
-            return Result<Unit>.Success(Unit.Value);
+            return Result<Guid>.Success(quota.QuotaID);
         }
 
         private async Task<Travel> _getTravel(Guid travelID)

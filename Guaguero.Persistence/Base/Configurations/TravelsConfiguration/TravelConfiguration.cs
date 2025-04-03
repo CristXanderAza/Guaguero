@@ -28,7 +28,11 @@ namespace Guaguero.Persistence.Base.Configurations.TravelsConfiguration
             builder.HasOne(t => t.Route)
                 .WithMany(r => r.Travels)
                 .HasForeignKey(t => t.RouteID)
-                .OnDelete(DeleteBehavior.NoAction); ;
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(t => t.NearestWayPoint)
+                .WithMany()
+                .HasForeignKey(t => t.NearestWayPointID);
 
             builder.OwnsOne(wp => wp.ActualLocation, c =>
             {

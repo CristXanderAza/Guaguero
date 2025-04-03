@@ -12,7 +12,7 @@ namespace Guaguero.API.Hubs
 
         public TravelHub(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         //Join Travel Group
@@ -31,6 +31,7 @@ namespace Guaguero.API.Hubs
             {
                 await Clients.Caller.SendAsync("Error", res.Message);
             }
+            await Clients.Caller.SendAsync("QuotaReserved", $"{res.Data}" );
         }
 
         public async Task UpdateTravelPosition(UpdateTravelPositionCommand command)
@@ -50,6 +51,10 @@ namespace Guaguero.API.Hubs
             if (!res.IsSuccessful)
             {
                 await Clients.Caller.SendAsync("Error", res.Message);
+            }
+            else
+            {
+                await Clients.Caller.SendAsync("ConfirmAcept", res.Data);
             }
         }
 
@@ -73,11 +78,7 @@ namespace Guaguero.API.Hubs
             }
         }
 
-        //Events
-        public async Task NotifyTravelChange(TravelLocationChangeNotification notification, string group)
-            =>  await Clients.Group(group).SendAsync("NotifyTravelChange", notification);
-        public async Task NotifyArrivals(IEnumerable<ArrivalDTO> arrivals)
-            => await Clients.Caller.SendAsync("NotifyArrivals", arrivals);
+
         
 
     }

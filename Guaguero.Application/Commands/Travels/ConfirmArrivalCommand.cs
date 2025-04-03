@@ -19,6 +19,13 @@ namespace Guaguero.Application.Commands.Travels
         private readonly ITravelRepository _travelRepository;
         private readonly IInMemoryCache<Travel,Guid> _cache;
 
+        public ConfirmedArrangeCommandHandler(IQuotaRepository quotaRepository, ITravelRepository travelRepository, IInMemoryCache<Travel, Guid> cache)
+        {
+            _quotaRepository = quotaRepository;
+            _travelRepository = travelRepository;
+            _cache = cache;
+        }
+
         public async Task<Result<Unit>> Handle(ConfirmArrivalCommand request, CancellationToken cancellationToken)
         {
             var quotas = await _quotaRepository.GetQuotaOfTravelInStep(request.TravelId, request.StepIndex);

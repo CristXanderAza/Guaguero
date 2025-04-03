@@ -46,25 +46,55 @@ namespace Guaguero.Persistence.Base
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.Entity<Customer>().HasData(Customer.Create("Cristopher", "Aza", "809-425-1911", "example@gmail.com", "Password1234").Data);
+            Customer c = new Customer
+            {
+                FirstName = "Cristopher",
+                LastName = "Aza",
+                PhoneNumber = "809-425-1911",
+                UserID = new Guid("a3f47c2b-1b3d-4e19-8e2a-3d9f7c5a1d5e"),
+
+            };
+
+            var credential = Credential.Create("example@gmail.com", "Password1234").Data;
+            modelBuilder.Entity<Customer>().HasData(c);
+            modelBuilder.Entity<Customer>().OwnsOne(wp => wp.Credential).HasData(new { UserBaseUserID = c.UserID,  credential.Email,  credential.PasswordHash} );
+
+
+           //modelBuilder.Entity<Customer>().HasData(Customer.Create("Cristopher", "Aza", "809-425-1911", "example@gmail.com", "Password1234").Data);
 
             Sindicato sichoem = new Sindicato
             {
                 SindicatoID = 1,
                 Name = "Sichoem",
                 Description = "Empresa de Guagua",
-                CreatedAt = DateTime.Now,
+                CreatedAt = new DateTime(2024, 1, 1),
             };
 
             modelBuilder.Entity<Sindicato>().HasData(sichoem);
-            Employee juan = Employee.Create("Juan", "Perez", "829-345-6788", "juan@gmail.com", "Password1234", 20000m, 1).Data;
-            modelBuilder.Entity<Employee>().HasData(juan);
+
+            Employee em = new Employee
+            {
+                FirstName = "Juan",
+                LastName = "829-345-6788",
+                PhoneNumber = "829-345-6788",
+                Salary = 20000m,
+                UserID= new Guid("d5f1a8e7-4c6b-49f2-b7d9-65e3c7f9b2a1"),
+                SindicatoID = 1
+            };
+
+
+            //Employee juan = Employee.Create("Juan", "Perez", "829-345-6788", "juan@gmail.com", "Password1234", 20000m, 1).Data;
+            var cre = Credential.Create("juan@gmail.com", "Password1234");
+            modelBuilder.Entity<Employee>().HasData(em);
+            modelBuilder.Entity<Employee>().OwnsOne(wp => wp.Credential).HasData(new { UserBaseUserID =  em.UserID, cre.Data.Email, cre.Data.PasswordHash});
 
             modelBuilder.Entity<Bus>().HasData(new Bus
             {
                 BusID = 1,
                 Capacidad = 50,
-                Sindicato = sichoem,
+                Estado = "SD",
+                Placa = "23131",
+                SindicatoID = sichoem.SindicatoID,
                 IsActive = true,
                 Modelo = "dfsa",
                 Marca = "dfasf",
@@ -75,33 +105,9 @@ namespace Guaguero.Persistence.Base
             {
                 RouteID = 1,
                 Name = "Ruta La Romana-Sto.Dom",
-                WayPoints = new []
-                {
-                    new WayPoint
-                    {
-                        RouteID = 1,
-                        Coordinate = new Coordinate(-69.543151,-69.543151),
-                        StepIndex = 1,
-                    },
-                    new WayPoint
-                    {
-                        RouteID = 1,
-                        Coordinate = new Coordinate(-69.186487,18.453213),
-                        StepIndex = 2,
-                    },
-                    new WayPoint
-                    {
-                        RouteID = 1,
-                        Coordinate = new Coordinate(-69.668553,18.449958),
-                        StepIndex = 3,
-                    },
-                    new WayPoint
-                    {
-                        RouteID = 1,
-                        Coordinate = new Coordinate(-69.685045,18.450846),
-                        StepIndex = 4,
-                    },
-                },
+                Description = "Ruta Romana Santo Domingo",
+                Destination = "Santo Domingo",
+                Origin = "La Romana",
                 GeoJSON = @"{
                   ""type"": ""FeatureCollection"",
                   ""features"": [
@@ -1206,18 +1212,84 @@ namespace Guaguero.Persistence.Base
                 
             });
 
+            modelBuilder.Entity<WayPoint>().HasData(
+                new WayPoint
+                {
+                    WayPointID = 1,
+                    RouteID = 1,
+                    StepIndex = 1
+                },
+                new WayPoint
+                {
+                    WayPointID = 2,
+                    RouteID = 1,
+                    StepIndex = 2
+                },
+                new WayPoint
+                {
+                    WayPointID = 3,
+                    RouteID = 1,
+                    StepIndex = 3
+                },
+                new WayPoint
+                {
+                    WayPointID = 4,
+                    RouteID = 1,
+                    StepIndex = 4
+                }
+            );
+
+            // Seeding de la entidad "Owned" Coordinate
+            modelBuilder.Entity<WayPoint>().OwnsOne(wp => wp.Coordinate).HasData(
+                new
+                {
+                    WayPointID = 1, // Debe coincidir con WayPointID
+                    Lat = -69.543151,
+                    Lng = -69.543151
+                },
+                new
+                {
+                    WayPointID = 2,
+                    Lat = 18.453213,
+                    Lng = -69.186487
+                },
+                new
+                {
+                    WayPointID = 3,
+                    Lat = 18.449958,
+                    Lng = -69.668553
+                },
+                new
+                {
+                    WayPointID = 4,
+                    Lat = 18.450846,
+                    Lng = -69.685045
+                }
+            );
+
             modelBuilder.Entity<Travel>().HasData(new Travel
             {
                 SindicatoID = 1,
                 RouteID = 1,
-                TravelID = Guid.NewGuid(),
+                TravelID = new Guid("f7c2a3d5-1b4e-4d19-8e2f-9f6a3c5b7d1e"),
                 TotalSteps = 4,
                 PricePerSeat = 275m,
+                NearestWayPointID = 1,
                 BusID = 1,
-                EmpleoyeeID = juan.UserID,
+                EmpleoyeeID = em.UserID,
                 InformalQuotas = 1,
                 BusCapacity = 50,
             });
+            /*
+            modelBuilder.Entity<CreditPerUser>().HasData(
+                new CreditPerUser
+                {
+                    CreditPerUserID = new Guid("2a3d5f7c-1b4e-49e2-8d19-6f7a3c5b9d1e"),
+                    CustomerID = c.UserID,
+                    Customer = c.UserID,
+                    Amount = 5000m                    
+                }
+                );*/
         }
     }
 }

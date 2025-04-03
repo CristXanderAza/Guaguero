@@ -1,4 +1,5 @@
 ﻿using Guaguero.Domain.Base;
+using Guaguero.Domain.Entities.Logistic.Routes;
 using Guaguero.Domain.Entities.Travels;
 using Guaguero.Domain.Interfaces.Infraestructure.Internal;
 using Guaguero.Domain.Interfaces.PersistenceInterfaces.Travels;
@@ -11,6 +12,9 @@ namespace Guaguero.Application.Commands.Travels
         public Guid TravelId { get; set; }
         public Guid EmpleoyeeID { get; set; }
         public int InformalArrivals { get; set; }   
+        public Coordinate StartLocation { get; set; }
+
+
 
     }
 
@@ -28,6 +32,7 @@ namespace Guaguero.Application.Commands.Travels
         public async Task<Result<Unit>> Handle(StartTravelCommand request, CancellationToken cancellationToken)
         {
             var tr = await _travelRepository.FindById(request.TravelId);
+            int busCapacidad = await _travelRepository.GetBusCapacity(tr.BusID);
             if (tr == null)
                 return Result<Unit>.Fail("El viaje no existe");
             if(tr.Status != TravelState.Pending)
@@ -45,7 +50,8 @@ namespace Guaguero.Application.Commands.Travels
             else
             {
                 tr.Status = TravelState.InProgress;
-                tr.BusCapacity = tr.Bus.Capacidad;
+                tr.ActualLocation = request.StartLocation;
+                tr.BusCapacity = busCapacidad;
             }
             tr.InformalQuotas = request.InformalArrivals;
             await _travelRepository.Update(tr);

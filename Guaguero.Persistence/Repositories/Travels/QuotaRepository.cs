@@ -12,13 +12,19 @@ namespace Guaguero.Persistence.Repositories.Travels
 {
     public class QuotaRepository : BaseRepository<Quota, Guid>, IQuotaRepository
     {
-        protected QuotaRepository(GuagueroContext context) : base(context)
+        public QuotaRepository(GuagueroContext context) : base(context)
         {
+        }
+
+
+        public override async Task<Quota> FindById(Guid id)
+        {
+            return await _context.Quotas.Include(q => q.Payment).Where(q => q.QuotaID == id).FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Quota>> GetQuotaOfTravelInStep(Guid Travel, int step)
         {
-            return await _context.Quotas.Where(q => q.TravelID == Travel && q.EntryStep == step)
+            return await _context.Quotas.Include(q => q.Payment).Where(q => q.TravelID == Travel && q.EntryStep == step)
                           .ToListAsync();
         }
     }
